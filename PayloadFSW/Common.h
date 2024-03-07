@@ -29,6 +29,35 @@ namespace Common
   const uint16_t PC_ADDR = 4; // packet count 
   const uint16_t ST_ADDR = 6; // states
   const String MS_ADDR = 17; // mission time
+
+  struct Packet_States
+  {
+    char HS_DEPLOYED; // heat shield
+    char PC_DEPLOYED; // parachute 
+  };
+
+  struct GPS_Data
+  {
+    uint8_t hours;
+    uint8_t minutes;
+    uint8_t seconds;
+    uint16_t milliseconds;
+    float latitude; 
+    float longitude;
+    float altitude;
+    byte sats;
+  };
+
+  // TO-DO: account for all sensor data
+  struct Sensor_Data
+  {
+    float vbat; // Teensy voltage sensor
+    float altitude; // BMP388 pressure-calculated
+    float temperature; // BMP388
+    float pressure; // BMP388
+    float tilt[2]; // BNO 085
+    float airspeed; // pitot tube
+  };
 }
 
 #endif
