@@ -20,6 +20,9 @@ namespace Common
   const byte CAMERA_PIN = 3;
   const byte AUDIO_BEACON_PIN = 6;
 
+  // Define variables for respective pin values
+  const byte BNO08X_RESET = -1;
+
   // TO-DO: could be a better way to implement this feature?
   const float SEA_LEVEL = 1014.6f; //update this before launch
   const uint16_t TEAM_ID = 2054;
