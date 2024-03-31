@@ -6,9 +6,13 @@
 #include <Wire.h>             // for I2C protocol
 #include <Adafruit_BMP3XX.h>  // for BMP388 functionality
 #include <Adafruit_BNO08x.h>  // for BNO085 functionality
+#include "ms4250.h" // for airspeed sensor functionality
 
 namespace Hardware
 {
+
+    /*Declare an MS4525DO Object*/
+    bfs::Ms4525do pres;
 
   // setup BMP388 sensor
   void setupBMP()
@@ -60,5 +64,34 @@ namespace Hardware
     // call BNO085 setup
     Serial.println("Initializing BNO085...")
     setupBNO();
+  }
+
+  //Performs the setup function on the airspeed sensor
+  void setupAirSpeed() {
+      /**Serisl to display data**/
+      Serial.begin(9600);
+      while (!Serial){}
+      Wire.begin();
+      Wire.setClock(400000); 
+
+      //Setup the I2C address of Ox28, on bus 0, with a -1 to +1 PSI range
+      pres.Config(&Wire, 0x28, 1.0f, -1.0f);
+      //Starting the communication with the pressure transducer */
+      if (!pres.Begin()) {
+          Serial.println("Error communicating with sensor"); 
+          while(1){}
+      }
+  }
+
+  void loop() {
+      //Read the sensor
+      if (pres.Read()) {
+          //Display the data
+          Serial.print(pres.pres_pa(), 6); //Obtain the pressure readings from the sensor
+          Serial.print("\t");
+          Serial.print(pres.die_temp_c(), 6); //Might not be needed
+          Serial.print("\n");
+      }
+      delay(10); //Apply the delay here
   }
 }
