@@ -6,13 +6,16 @@
 
 #include <Arduino.h>
 #include <Time.h>
+#include <SoftwareSerial.h>
 
 namespace Common
 {
   // Serial communication rate in bit/s
-  const int SERIAL_BAUD = 9600
+  const int SERIAL_BAUD = 9600;
 
   // TO-DO: update the pin values to match actual config
+  const byte RXPIN = 2;
+  const byte TXPIN = 3;
   const byte VOLTAGE_PIN = 38;
   const byte PARA_SERVO_PIN = 22;
   const byte HS_SERVO_PIN = 23;
