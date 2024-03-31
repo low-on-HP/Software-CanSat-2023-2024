@@ -7,14 +7,14 @@
 
 void setup() {
   // Start Serial communication, if debugging
-  Serial.begin(Common::SERIAL_BAUD)
+  Serial.begin(Common::SERIAL_BAUD);
   while (!Serial); // wait for serial connection
-  Serial.println("Serial Connection Established.")
+  Serial.println("Serial Connection Established.");
 
   // Initialize all components 
-  Serial.println("Beginning Hardware Initialization...")
+  Serial.println("Beginning Hardware Initialization...");
   Hardware::init();
-  Serial.println("Hardware Initialized.")
+  Serial.println("Hardware Initialized.");
 
 }
 
